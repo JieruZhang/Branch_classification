@@ -14,7 +14,8 @@ from data_loader import read_category, read_vocab
 # except NameError:
     # unicode = str
 
-base_dir = 'data'
+#base_dir = 'data/SHORT_SERVER-103'
+base_dir = 'E:/traces/SHORT_SERVER-103/5'
 vocab_dir = os.path.join(base_dir, 'vocab.txt')
 
 save_dir = 'checkpoints/textrnn'
@@ -52,6 +53,6 @@ class RnnModel:
 
 if __name__ == '__main__':
     rnn_model = RnnModel()
-    test_demo = ['6c59f80 6c5a001 6c59f80 6c5a001 6c59f8']
+    test_demo = ['6c5a001 6c59f80 6c5a001 6c59f80 6c5a00']
     for i in test_demo:
         print(rnn_model.predict(i))
