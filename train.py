@@ -57,7 +57,7 @@ def evaluate(sess, x_, y_):
 def train():
     print("Configuring TensorBoard and Saver...")
     # 配置 Tensorboard，重新训练时，请将tensorboard文件夹删除，不然图会覆盖
-    tensorboard_dir = os.path.join(base_dir, str(window_size) + '/tensorboard/textrnn')
+    tensorboard_dir = os.path.join(base_dir, str(train_ratio) + '/tensorboard/textrnn')
     if not os.path.exists(tensorboard_dir):
         os.makedirs(tensorboard_dir)
 
@@ -189,23 +189,26 @@ def test():
 if __name__ == '__main__':
     # if len(sys.argv) != 2 or sys.argv[1] not in ['train', 'test']:
         # raise ValueError("""usage: python run_rnn.py [train / test]""")
-    if len(sys.argv) != 4:
+    if len(sys.argv) != 6:
         raise ValueError("Need arguments: data_dir, save_dir, window_size")
     
-    data_dir = sys.argv[1]
-    base_dir = sys.argv[2]
-    window_size = sys.argv[3]
+    train_data_dir = sys.argv[1]
+    eval_data_dir = sys.argv[2]
+    base_dir = sys.argv[3]
+    window_size = sys.argv[4]
+    train_ratio = sys.argv[5]
     vocab_dir = os.path.join(base_dir, 'vocab.txt')
-    save_dir = os.path.join(base_dir, window_size + '/checkpoints/textrnn')
+    save_dir = os.path.join(base_dir, train_ratio + '/checkpoints/textrnn')
     save_path = os.path.join(save_dir, 'best_validation')  # 最佳验证结果保存路径
     window_size = int(window_size)
+    train_ratio = float(train_ratio)
     
     print('Configuring RNN model...')
     print('Building vocab if not exists.')
     start_time_vocab = time.time()
     config = TRNNConfig()
     if not os.path.exists(vocab_dir):  # 如果不存在词汇表，重建
-        build_vocab(data_dir, vocab_dir)
+        build_vocab(train_data_dir, vocab_dir)
     categories, cat_to_id = read_category()
     words, word_to_id = read_vocab(vocab_dir)
     config.vocab_size = len(words)
@@ -217,7 +220,7 @@ if __name__ == '__main__':
     #读取原始数据并转换成三个集合
     print("Processing and loading training and validation data...")
     start_time = time.time()
-    x_train, x_val, x_test, y_train, y_val, y_test = process_all_file(data_dir, word_to_id,cat_to_id, config.seq_length, window_size)
+    x_train, x_val, x_test, y_train, y_val, y_test = process_all_file(train_data_dir, eval_data_dir, train_ratio,word_to_id,cat_to_id, config.seq_length, window_size)
     time_dif = get_time_dif(start_time)
     print("Time usage:", time_dif)
     

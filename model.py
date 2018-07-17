@@ -13,7 +13,7 @@ class TRNNConfig(object):
     vocab_size = 5000       # 词汇表达小
 
     num_layers= 2           # 隐藏层层数
-    hidden_dim = 128       # 隐藏层神经元 128
+    hidden_dim = 128        # 隐藏层神经元 128
     rnn = 'rnn'             # lstm 或 gru 或 rnn
 
     dropout_keep_prob = 0.5 # dropout保留比例
