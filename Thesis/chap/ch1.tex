@@ -1,0 +1,23 @@
+\chapter{Introduction}
+\label{chap:introduction}
+
+In this chapter, we will first briefly introduce the Recurrent Neural Network (RNN) and the branch prediction, which reflect the motivation of this project. Then we will discuss the objectives and contribution of the project. Finally, we also describe the structure of this document.
+
+\section{Motivation of the Project}
+\label{sec:motivation}
+
+In the area of Machine Learning, RNN is a type of neural network, which is good at capturing the tenporal features of sequential data. Therefore, RNN is widely used to predict and label sequential data in the area of Natural Language Processing(NLP), for example recognising sequential speech data ~\citep{graves2013speech} and language modeling ~\citep{mikolov2010recurrent}. Specifically, different types of RNN were used in these works, the most popular types are the Long Short-Term Memory network (LSTM) ~\citep{gers1999learning}, bidirectional RNN ~\citep{graves2013speech} and the Gated Recurrent Unit network (GRU) ~\citep{cho2014learning}. 
+
+Furthermore, a branch predictor predicts the direction of a branch given the program history. A mispredicted branch could cause the waste of program work ~\citep{michaud1996skewed}. Therefore, it is important to improve the accuracy of the branch prediction. A higher prediction accuracy could offset the misprediction penalties and improve the performance of the processor ~\citep{leedynamic}. The state-of-the-art branch predictor uses the partial matching compression algorithm and achieves the accuracy of 99\% ~\citep{seznec2006case}.
+
+Finally, because program branches are time-based, branch prediction could benefit from the usage of RNN. This project aims at predicting branch outcomes given the branch history using RNN. The primary purpose of this project is to build the RNN branch predictor, which is a new attempt in the area of branch prediction. Moreover, to make the RNN predictor more competitive with the state-of-the-art brach predictors, different RNN types and ML techniques are used, which will be described in subsequent chapters. 
+
+\section{Objective and Contribution of the Project}
+\label{sec:objective}
+
+The primary objective of the project is to build an RNN branch predictor, which could predict the future outcome of a branch given the branch history. More specifically, instead of building a predictor whose performance exceeds the existing best predictor, we focus on attempting different techniques in ML and find a relatively better model configuration. Besides, the second objective is exploring the influence of varying branch history length, and various training set size has on the model's performance.
+
+Our contributions could be...
+
+\section{Structure of the Dissertation}
+\label{sec:structure}
